@@ -1,36 +1,51 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@alexbalak21 
-alexbalak21
-/
-carpool
-1
-0
-0
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-carpool/frontend/assets/css/style.css
-@alexbalak21
-alexbalak21 update
-Latest commit 29ef35e 19 hours ago
- History
- 1 contributor
-136 lines (118 sloc)  1.49 KB
-  
-* {
+Skip
+  to
+  content
+  Search
+  or
+  jump
+  to…
+  Pull
+  requests
+  Issues
+  Marketplace
+  Explore
+  @alexbalak21
+  alexbalak21
+  /
+  carpool
+  1
+  0
+  0
+  code
+  Issues
+  Pull
+  requests
+  Actions
+  Projects
+  Wiki
+  Security
+  Insights
+  Settings
+  carpool/frontend/assets/css/style.css
+  @alexbalak21
+  alexbalak21
+  update
+  Latest
+  commit
+  29ef35e
+  19
+  hours
+  ago
+  History
+  1
+  contributor
+  136
+  lines
+  (118 sloc)
+  1.49
+  KB
+  * {
   box-sizing: border-box;
   margin: 0;
 }
@@ -166,15 +181,7 @@ button a {
   text-decoration: none;
   color: black;
 }
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
+
+#message {
+  color: blue;
+}

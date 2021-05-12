@@ -10,6 +10,7 @@
 
 //CHECKS POST REQUESTS & SEND IT TO THE MODEL
 require_once("model.php");
+//POST REQUEST - CREATE AND UPDATE SPECTACLES
 if(isset($_POST['submit'])){
     if($_POST['submit'] == 'Creer'){
     echo "CREATE";
@@ -19,7 +20,7 @@ if(isset($_POST['submit'])){
     $idArtiste = $_POST['artiste'];
     $create = create($date, $heure, $idLieu, $idArtiste);
     if($create)
-    header("Location: index.php");
+    header("Location: index.php?message=ENTRY CREATED");
     }
     else if ($_POST['submit'] == 'Mettre a Jour'){
     $id = $_POST['id'];
@@ -28,15 +29,15 @@ if(isset($_POST['submit'])){
     $idLieu = $_POST['lieu'];
     $idArtiste = $_POST['artiste'];
     $update = update($id, $date, $heure, $idLieu, $idArtiste);
-    header("Location: index.php");
+    header("Location: index.php?message=ID: $id - UPDATED");
     }
     }
-
+    //DELETE REQUEST 
     if(isset($_GET['delete'])){
     $id = $_GET['id'];
     $del = delete($id);
     if($del)
-    header("Location: index.php");
+    header("Location: index.php?message=ID: $id - DELETED");
     }
 
     if( isset($_GET['update']) ){

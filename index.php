@@ -21,6 +21,7 @@
         <section id="main">
           <h1>Spectacles</h1>
           <?php
+        require_once("message.php");
         require_once("model.php");
         require_once("router.php");
         ?>
@@ -28,13 +29,7 @@
         <aside></aside>
       </main>
       <footer>
-      <?php
-      echo "DEBUG :<br>";
-      echo "POST:<br>"; 
-      var_dump($_POST);
-       echo "GET:<br />"; 
-       var_dump($_GET); 
-      ?>
+
       </footer>
       <script src="assets/js/script.js"></script>
     </body>

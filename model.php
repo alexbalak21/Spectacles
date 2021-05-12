@@ -1,8 +1,8 @@
 <?php
 //DATABASE CONNECTION 
 function db_connect(){
-$servername = "localhost";
-$username = "admin";
+$servername = "localhost"; 
+$username = "admin";      
 $password = "root";
 $dbname = "spectacles";
 global $conn;
@@ -64,7 +64,6 @@ function getMax($table, $col){
   $result = $data["$col"];
   return $result; 
 }
-
 
 //CREATE
 function create($date, $heure, $IDlieu, $IDartiste){
