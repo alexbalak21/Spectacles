@@ -53,7 +53,7 @@ function getCol($table, $col){
   return $array;
 }
 
-//GET MAX ID
+//GET MAX ID (USED WHEN CRETE SPECTACLE)
 function getMax($table, $col){
   db_connect();
   global $conn;

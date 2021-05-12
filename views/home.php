@@ -38,16 +38,15 @@ foreach($many as $one){
         }
         $id = $one['idSpectacle'];
         echo "<td>", $data, "</td>";
-        $update = "<form action='index.php' method='GET'>
+        $update = "
   <input type='hidden' name='id' value='$id' />
-  <input type='submit' name='update' value='UPDATE' /></form>";
-$delete= "<form action='action.php' method='GET'>
+  <input type='submit' name='update' value='UPDATE'/>";
+  $delete= "
   <input type='hidden' name='id' value='$id' />
-  <input type='submit' name='delete' value='DELETE' />
-  </form>
+  <input type='submit' name='delete' value='DELETE'/>
   ";
 }
-    echo "<td>",$update, $delete,"</td>";
+    echo "<td><form action='action.php' method='GET'>",$update, $delete,"</form></td>";
         
     echo "</tr>";
 }
