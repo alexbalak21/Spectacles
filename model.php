@@ -19,7 +19,7 @@ try {
 function getAll(){
   db_connect();
   global $conn;
-  $stmt = $conn->prepare("SELECT * FROM spectacle");
+  $stmt = $conn->prepare("SELECT * FROM `spectacle` ORDER BY `spectacle`.`idSpectacle` DESC");
   $stmt->execute();
   $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
   $data = $stmt->fetchAll();
@@ -27,18 +27,17 @@ function getAll(){
 }
 
 //GET BY ID
-function getByID($table, $col, $id){
+function searchBy($table, $col, $search){
   db_connect();
   global $conn;
-  $stmt = $conn->prepare("SELECT $col FROM $table WHERE idLieu='$id'");
+  $stmt = $conn->prepare("SELECT * FROM $table WHERE $col='$search'");
   $stmt->execute();
   $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-  $data = $stmt->fetchAll();
-  $unit = $data[0]["$col"];
-  return $unit;
+  $data = $stmt->fetch();
+  return $data;
 }
 
-//GET COLUM DATA FROM TABLE
+//GET COLUM DATA IN ARRAY
 function getCol($table, $col){
   db_connect();
   global $conn;
@@ -54,6 +53,7 @@ function getCol($table, $col){
   return $array;
 }
 
+//GET MAX ID
 function getMax($table, $col){
   db_connect();
   global $conn;
@@ -73,88 +73,29 @@ function create($date, $heure, $IDlieu, $IDartiste){
   $id = (INT)getMax('spectacle', 'idSpectacle');
   $id++;
   $heure = $heure . ':00';
-  $sql ="INSERT INTO `spectacle` (`idSpectacle`, `dateSpectacle`, `heure`, `idLieu`, `idArtistePrincipal`) VALUES ('$id', '$date', '$heure', '$IDlieu', '$IDartiste')";
-  $stmt = $conn->prepare($sql);
+  $stmt = $conn->prepare("INSERT INTO `spectacle` (`idSpectacle`, `dateSpectacle`, `heure`, `idLieu`, `idArtistePrincipal`) VALUES ('$id', '$date', '$heure', '$IDlieu', '$IDartiste')");
   $done = $stmt->execute();
-  if($done)
-  echo "ADDED";
+  return $done;
 }
 
-
-
-
-function createMock(){
+//UPDATE
+function update($id, $date, $heure, $IDlieu, $IDartiste){
   db_connect();
   global $conn;
-  $id = (INT)getMax('spectacle', 'idSpectacle');
-  // $id++;
-  // $heure = $heure . ':00';
-
-  // $stmt = $conn->prepare("INSERT INTO spectacle (idSpectacle, dateSpectacle, heure, idLieu, idArtistePrincipal) VALUES ('$id', '$date', '$heure', '$IDlieu', '$IDartiste')");
+  $sql = '';
+  $sql = "UPDATE spectacle SET `dateSpectacle` = '$date', `heure` = '$heure', `idLieu` = '$IDlieu', `idArtistePrincipal` = '$IDartiste' WHERE `idSpectacle` = $id";
   $stmt = $conn->prepare($sql);
   $done = $stmt->execute();
-  if($done)
-  echo "ADDED";
+  $done;
 }
-
-
-
-
-//UPATE
-function updateUsers($id, $username, $password, $email, $age, $img){
-  db_connect();
-  global $conn;
-  $stmt = $conn->prepare("UPDATE users SET username=:username, pass=:pass, email=:email, age=:age, img=:img WHERE id=:id");
-  $stmt->bindValue (':username', $username);
-  $stmt->bindValue (':pass', $password);
-  $stmt->bindValue (':email', $email);
-  $stmt->bindValue (':age', $age, PDO::PARAM_INT);
-  $stmt->bindValue (':img', $img);
-  $stmt->bindValue (':id', $id, PDO::PARAM_INT);
-  $done = $stmt->execute();
-  if($done)
-  echo "UPDATED";
-}
-
 
 //DELETE
-function deleteUser($id){
-db_connect();
-global $conn;
-  $stmt = $conn->prepare("DELETE FROM users WHERE id=:id");
-  $stmt->bindValue (':id', $id, PDO::PARAM_INT);
-  $done = $stmt->execute();
-  if($done)
-  echo "DELETED";
-}
-
-
-
-
-
-
-function create_table(){
+function delete($id){
   db_connect();
   global $conn;
-  $sql = "CREATE TABLE users (
-  id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(50) NOT NULL,
-  pass VARCHAR(255) NOT NULL,
-  email VARCHAR(50) NOT NULL,
-  age INT(3) UNSIGNED NOT NULL,
-  img VARCHAR(50) DEFAULT 'profile.png',
-  reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)";
-
-  // use exec() because no results are returned
-  $conn ->exec("DROP TABLE users");
-  $conn->exec($sql);
-  echo "Table users created successfully";
-  $conn = null;
+    $stmt = $conn->prepare("DELETE FROM `spectacle` WHERE `idSpectacle`=$id");
+    $done = $stmt->execute();
+    return $done;
 }
-
-
-
-
-
 
 ?>

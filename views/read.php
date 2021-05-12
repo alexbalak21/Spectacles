@@ -11,34 +11,50 @@
 
 <?php 
 $many = getAll();
-$options = "
-<button>UPDATE</button>
-<button>DELETE</button>";
+$update = "
+<form action='index.php' method='GET'>
+  <input type='hidden' name='id' value='102' />
+  <input type='submit' name='update' value='UPDATE' />
+</form>";
+
+$delete= "
+<form action='index.php' method='GET'>
+  <input type='hidden' name='id' value='102' />
+  <input type='submit' name='update' value='DELETE' />
+</form>";
+
 foreach($many as $one){
     echo "<tr>";
     foreach ($one as $key => $data){
         if ($key == 'idLieu'){
-            $id = $data;
+            $idLieu = $data;
             $liuex= getCol('lieu', 'nomLieu');
-            $data = $liuex[$id];
+            $data = $liuex[$idLieu];
         }
         if($key == 'idArtistePrincipal'){
-            $id = $data;
+            $idArtiste = $data;
             $artistes = getCol('artiste', 'nomArtiste');
-            $data = $artistes[$id];
+            $data = $artistes[$idArtiste];
         }
-
-        
-
+        $id = $one['idSpectacle'];
         echo "<td>", $data, "</td>";
-
-    }
-        echo "<td>", $options, "</td>";
+        $update = "<form action='index.php' method='GET'>
+  <input type='hidden' name='id' value='$id' />
+  <input type='submit' name='update' value='UPDATE' /></form>";
+$delete= "<form action='action.php' method='GET'>
+  <input type='hidden' name='id' value='$id' />
+  <input type='submit' name='delete' value='DELETE' />
+  </form>
+  ";
+}
+    echo "<td>",$update, $delete,"</td>";
         
     echo "</tr>";
 }
 echo "</table>";
 echo "<br><br><br><br>";
+
+
 
 
 

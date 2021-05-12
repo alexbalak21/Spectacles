@@ -1,8 +1,5 @@
 <h3>Creer Spectacle:</h3>
-<form action="index.php" method="POST">
-<!-- <label>Nombre </label><br>
-<input type="number" name="id" min="100" > -->
-<? ?>
+<form action="action.php" method="POST">
 <label>Date</label><br>
 <input type="date" name="date"><br><br>
 <label>Heure</label><br>
@@ -27,11 +24,3 @@
 <br><br>
 <input type="submit" name="submit" value="Creer">
 </form>
-<br>
-<br>
-
-<?php
-
-
-
-

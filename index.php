@@ -10,44 +10,42 @@
   <body>
     <body>
       <ul class="nav">
-        <li><a href="index.php">HOME</a></li>
+        <li><a href="?page=home">HOME</a></li>
         <li><a href="?page=create">CREER SPECTACLE</a></li>
         <li id="nav-right"><a href="#">LINK</a></li>
         <li id="nav-right"><a href="#">LINK</a></li>
       </ul>
       <main>
-        <aside></aside>
+        <aside>
+        
+        </aside>
         <section id="main">
             <h1>Spectacles</h1>
-            <?php
-             require_once("model.php");
-            if(isset($_GET['page'])){
-                $page = $_GET['page'];
-                if($page  == 'create')
-                require_once('views/create.php');
-            }
-            else
-             require_once("views/read.php");
+<?php
+require_once("model.php");
+if(isset($_GET['update']))
+require_once("views/update.php");
+else if(isset($_GET['page'])){
+$page = $_GET['page'];
+if($page  == 'create')
+require_once('views/create.php');
+if($page == 'home')
+require_once('views/read.php');
+}
+else
+require_once('views/read.php');
 
-             if(isset($_POST['submit'])){
-                 if($_POST['submit'] == 'Creer'){
-                     $date = $_POST['date'];
-                     $heure = $_POST['heure'];
-                     $idLieu = $_POST['lieu'];
-                     $idArtiste = $_POST['artiste'];
-                    create($date, $heure, $idLieu, $idArtiste);
-                 }
-             }
-            ?>
-
-        </section>
-        <aside></aside>
-      </main>
-      <footer>
-        <?php
-         echo "POST:<br>";  
+?>
+</section>
+<aside></aside>
+  </main>
+  <footer>
+  <?php
+    echo "POST:<br>";  
          var_dump($_POST);
-        ?>
+         echo "GET:<br>";  
+         var_dump($_GET);
+?>
       </footer>
       <script src="assets/js/script.js"></script>
     </body>
